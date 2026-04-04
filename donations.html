@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - CleanTO</title>
+    <link rel="stylesheet" href="headerfooter.css">
+    <link rel="stylesheet" href="container.css">
+    
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <!-- NAVIGATION -->
+    <nav>
+        <a href="#" class="logo">🌿 CleanTO</a>
+        <ul>
+            <li><a href="index.html" target="_blank">Home</a></li>
+            <li><a href="impact.html" target="_blank">Impact</a></li>
+            <li><a href="clean.html" target="_blank">Clean With Us</a></li>
+            <li><a href="shop.html" target="_blank">Shop</a></li>
+            <li><a href="donate.html" target="_blank">Donate</a></li>
+            <li><a href="about.html" target="_blank">About</a></li>
+        </ul>
+    </nav>
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Clean Toronto. One Dollar at a Time.</h1>
+        <p>Every donation goes directly to community cleanups and keeping Toronto's streets clean.</p>
+        <div class="hero-buttons">
+            <button class="btn-white" onclick="scrollToForm()">Donate Once</button>
+            <button class="btn-outline" onclick="setMonthly()">Become a Monthly Donor</button>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <h2>Choose Your Donation</h2>
+        <p class="subtitle">Select a frequency and an amount.</p>
+
+        <!-- TOGGLE -->
+        <div class="toggle-group">
+            <button id="btn-onetime" class="active" onclick="setFrequency('onetime')">One-Time</button>
+            <button id="btn-monthly" onclick="setFrequency('monthly')">Monthly</button>
+        </div>
+
+        <!-- AMOUNT TABLE -->
+        <table id="amount-table">
+            <thead>
+                <tr>
+                    <th>Amount</th>
+                    <th>One-Time Impact</th>
+                    <th>Monthly Impact</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="selected" onclick="selectAmount(this, 5)">
+                    <td>$5</td>
+                    <td>Gloves and bags for one volunteer</td>
+                    <td>Equips 12 volunteers over the year</td>
+                </tr>
+                <tr onclick="selectAmount(this, 10)">
+                    <td>$10</td>
+                    <td>Basic supplies for a small cleanup</td>
+                    <td>One neighbourhood cleanup per month</td>
+                </tr>
+                <tr onclick="selectAmount(this, 15)">
+                    <td>$15</td>
+                    <td>Full cleanup kit for an event</td>
+                    <td>Gear for two events per month</td>
+                </tr>
+                <tr onclick="selectAmount(this, 30)">
+                    <td>$30</td>
+                    <td>Fund a neighbourhood cleanup session</td>
+                    <td>Supplies for a full cleanup season</td>
+                </tr>
+                <tr onclick="selectAmount(this, 60)">
+                    <td>$60</td>
+                    <td>Supplies for a full community event</td>
+                    <td>Year-round cleanup program</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- PAYMENT FORM -->
+        <h2 id="payment-section">Payment Details</h2>
+        <p class="subtitle">Your information is secure.</p>
+
+        <div class="form-card">
+
+            <div class="selected-display">
+                <div>Donating: <span class="amount" id="summary-amount">$5</span></div>
+                <span class="freq-tag" id="summary-freq">One-Time</span>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" placeholder="Jane">
+                    <span class="error-msg" id="err-first">Please enter your first name.</span>
+                </div>
+                <div class="form-group">
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" placeholder="Smith">
+                    <span class="error-msg" id="err-last">Please enter your last name.</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" placeholder="jane@example.com">
+                    <span class="error-msg" id="err-email">Please enter a valid email address.</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="card-number">Card Number</label>
+                    <input type="text" id="card-number" placeholder="1234 5678 9012 3456" maxlength="16">
+                    <span class="error-msg" id="err-card">Please enter a valid 16-digit card number.</span>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="expiry">Expiry Date</label>
+                    <input type="text" id="expiry" placeholder="MM/YY" maxlength="5">
+                    <span class="error-msg" id="err-expiry">Please enter the expiry date.</span>
+                </div>
+                <div class="form-group">
+                    <label for="cvv">CVV</label>
+                    <input type="text" id="cvv" placeholder="123" maxlength="3">
+                    <span class="error-msg" id="err-cvv">Please enter your 3-digit CVV.</span>
+                </div>
+            </div>
+
+            <button class="submit-btn" id="submit-btn" onclick="submitDonation()">Donate Now</button>
+
+            <div class="msg-box success" id="msg-success">
+                ✅ Thank you! Your donation was received. A confirmation email has been sent.
+            </div>
+            <div class="msg-box error" id="msg-error">
+                ❌ Please fill in all required fields correctly.
+            </div>
+
+            <div class="trust-row">
+                <span class="trust-item">🔒 Secure payment</span>
+                <span class="trust-item">📧 Receipt by email</span>
+                <span class="trust-item">❌ Cancel monthly anytime</span>
+                <span class="trust-item">👤 No account required</span>
+            </div>
+
+        </div>
+
+        <!-- WHY DONATE -->
+        <h2>Why Donate?</h2>
+        <p class="subtitle">Your money does real work in Toronto.</p>
+
+        <div class="impact-grid">
+            <div class="impact-card">
+                <h3>5T</h3>
+                <p>Litter removed from Toronto in under 6 months</p>
+            </div>
+            <div class="impact-card">
+                <h3>8,500+</h3>
+                <p>Active community members powered by donations</p>
+            </div>
+            <div class="impact-card">
+                <h3>65%</h3>
+                <p>Of collected materials successfully recycled</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOTTOM CTA -->
+    <div class="bottom-cta">
+        <h2>Not Ready to Donate?</h2>
+        <p>You can still make an impact. Join a cleanup or share CleanTO with someone who cares.</p>
+        <div class="bottom-cta-btns">
+            <button class="btn-white">Join an Event</button>
+            <button class="btn-outline">Share CleanTO</button>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 CleanTO. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        var currentFrequency = "onetime";
+        var currentAmount = 5;
+
+        function setFrequency(freq) {
+            currentFrequency = freq;
+
+            if (freq === "onetime") {
+                document.getElementById("btn-onetime").classList.add("active");
+                document.getElementById("btn-monthly").classList.remove("active");
+                document.getElementById("summary-freq").textContent = "One-Time";
+                document.getElementById("submit-btn").textContent = "Donate Now";
+            } else {
+                document.getElementById("btn-monthly").classList.add("active");
+                document.getElementById("btn-onetime").classList.remove("active");
+                document.getElementById("summary-freq").textContent = "Monthly";
+                document.getElementById("submit-btn").textContent = "Start My Monthly Gift";
+            }
+        }
+
+        function selectAmount(row, amount) {
+            var rows = document.querySelectorAll("#amount-table tbody tr");
+            for (var i = 0; i < rows.length; i++) {
+                rows[i].classList.remove("selected");
+            }
+            row.classList.add("selected");
+            currentAmount = amount;
+            document.getElementById("summary-amount").textContent = "$" + amount;
+        }
+
+        function scrollToForm() {
+            document.getElementById("payment-section").scrollIntoView({ behavior: "smooth" });
+        }
+
+        function setMonthly() {
+            setFrequency("monthly");
+            scrollToForm();
+        }
+
+        function submitDonation() {
+            var valid = true;
+
+            // Clear previous errors
+            var inputs = document.querySelectorAll("input");
+            for (var i = 0; i < inputs.length; i++) {
+                inputs[i].classList.remove("error");
+            }
+            var errors = document.querySelectorAll(".error-msg");
+            for (var i = 0; i < errors.length; i++) {
+                errors[i].style.display = "none";
+            }
+            document.getElementById("msg-success").style.display = "none";
+            document.getElementById("msg-error").style.display = "none";
+
+            // Validate first name
+            var firstName = document.getElementById("first-name").value.trim();
+            if (firstName === "") {
+                document.getElementById("first-name").classList.add("error");
+                document.getElementById("err-first").style.display = "block";
+                valid = false;
+            }
+
+            // Validate last name
+            var lastName = document.getElementById("last-name").value.trim();
+            if (lastName === "") {
+                document.getElementById("last-name").classList.add("error");
+                document.getElementById("err-last").style.display = "block";
+                valid = false;
+            }
+
+            // Validate email
+            var email = document.getElementById("email").value.trim();
+            if (email === "" || email.indexOf("@") === -1) {
+                document.getElementById("email").classList.add("error");
+                document.getElementById("err-email").style.display = "block";
+                valid = false;
+            }
+
+            // Validate card number (16 digits)
+            var card = document.getElementById("card-number").value.trim();
+            if (card.length !== 16 || isNaN(card)) {
+                document.getElementById("card-number").classList.add("error");
+                document.getElementById("err-card").style.display = "block";
+                valid = false;
+            }
+
+            // Validate expiry
+            var expiry = document.getElementById("expiry").value.trim();
+            if (expiry === "" || expiry.length < 5) {
+                document.getElementById("expiry").classList.add("error");
+                document.getElementById("err-expiry").style.display = "block";
+                valid = false;
+            }
+
+            // Validate CVV
+            var cvv = document.getElementById("cvv").value.trim();
+            if (cvv.length !== 3 || isNaN(cvv)) {
+                document.getElementById("cvv").classList.add("error");
+                document.getElementById("err-cvv").style.display = "block";
+                valid = false;
+            }
+
+            // Show result
+            if (valid) {
+                document.getElementById("msg-success").style.display = "block";
+            } else {
+                document.getElementById("msg-error").style.display = "block";
+            }
+        }
+    </script>
+
+</body>
+</html>
