@@ -39,89 +39,51 @@
 </div>
 
 <div id="checkout-modal" class="modal">
-	<div class="modal-content">
-		        <table id="amount-table">
-
-
-
-                <tr onclick="selectAmount(this, 60)">
-                    <td>$60</td>
-                    <td><label for="email">Email Address:</label>
-		</td>
-                    <td><input type="email" id="checkout-email" placeholder="your@email.com"required></td>
-                </tr>
-                                <tr onclick="selectAmount(this, 60)">
-                    <td>$60</td>
-                    <td><label for="email">Credit Card Name:</label>
-		</td>
-                    <td><input type="CCName" id="checkout-CCName" placeholder="Credit Card Name"required></td>
-                </tr>
-                                <tr onclick="selectAmount(this, 60)">
-                    <td>$60</td>
-                    <td><label for="email">Credit Card Number:</label>
-</td>
-                    <td><input type="CCName" id="checkout-CCName" placeholder="Credit Card Name"required></td>
-                </tr>
-                                <tr onclick="selectAmount(this, 60)">
-                    <td>$60</td>
-                    <td><label for="email">CVV:</label></td>
-                    <td><input type="CVV" id="checkout-CVC" placeholder="CVV" required></td>
-
+    <div class="modal-content">
+        <span class="close-btn">&times;</span>
+        <h2>Checkout Information</h2>
+        
+        <table id="amount-table">
             <thead>
-
                 <tr>
-                    <th></th>
-                    <th>Fill our your information</th>
-                    <th></th>
+                    <th colspan="2">Fill out your information</th>
                 </tr>
             </thead>
             <tbody>
-                   <tr onclick="selectAmount(this, 30)">
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                <tr>
+                    <td><label for="first-name">First Name</label></td>
+                    <td>
+                        <input type="text" id="first-name" placeholder="Jane">
+                        <span class="error-msg" id="err-first">Required</span>
+                    </td>
                 </tr>
-                <tr class="selected" onclick="selectAmount(this, 5)">
-                    <td>-</td>
-                    <td>SUBTOTAL</td>
-                    <td>$$$</td>
+                <tr>
+                    <td><label for="email">Email Address</label></td>
+                    <td>
+                        <input type="email" id="email" placeholder="jane@example.com">
+                        <span class="error-msg" id="err-email">Invalid Email</span>
+                    </td>
                 </tr>
-                <tr onclick="selectAmount(this, 10)">
-                    <td>-</td>
-                    <td>TAX </td>
-                    <td>$$$</td>
+                <tr>
+                    <td><label for="card-number">Card Number</label></td>
+                    <td>
+                        <input type="text" id="card-number" placeholder="16 digits" maxlength="16">
+                        <span class="error-msg" id="err-card">16 digits required</span>
+                    </td>
                 </tr>
-                <tr onclick="selectAmount(this, 15)">
-                    <td>-</td>
-                    <td>TOTAL</td>
+                <tr>
+                    <td><strong>TOTAL</strong></td>
                     <td><strong>$<span id="final-total">0.00</span></strong></td>
                 </tr>
-
             </tbody>
         </table>
 
+        <div class="msg-box error" id="msg-error">❌ Please fill in all fields correctly.</div>
+        <button class="submit-btn" id="submit-btn" onclick="submit()">Donate Now</button>
+    </div>
+</div>
 
-		<span class="close-btn">&times;</span>
-<!--
-		<h2 id="pop-title">Checkout</h2>
-		<p>Total tax: <strong>$<span id="final-total">0.00</span></strong></p>
-		<p>Total to pay: <strong>$<span id="final-total">0.00</span></strong></p>
 
-		<div><label for="email">Email Address:</label>
-		<input type="email" id="checkout-email" placeholder="your@email.com"required></div>
-
-		<div><label for="CCName">Credit Card Name:</label>
-		<input type="CCName" id="checkout-CCName" placeholder="Credit Card Name"required></div>
-
-		<div><label for="CCNum">Credit Card Number:</label>
-		<input type="CCNum" id="checkout-CCNum" placeholder="Credit Card Number"required></div>
-
-		<div><label for="CVV">CVV:</label>
-		<input type="CVV" id="checkout-CVC" placeholder="CVV" required></div>
--->
-		<button id="confirm-pay">Confirm Payment</button>
-		</div>
-	</div>
 <div id="gif-modal" class="modal" style="display:none;">
     <div class="modal-content" style="text-align: center;">
         <h3>See you on the darkweb!</h3>
@@ -131,19 +93,75 @@
     </div>
 </div>
 
-
 <header style="background: #333; color:white; padding: 20px; display: flex; justify-content: space-between; align-items:center;">
-	<h2 id="store-title">Loading store...</h2>
-<button id="open-checkout"  style="padding:10px 20px; background:green; color:white; border-radius:50px; cursor:pointer;">
-	Go to Checkout ($ <span id="cart-total-nav"> 0.00 </span> )
-</button>
+    <h2 id="store-title">Loading store...</h2>
+    <button id="open-checkout" style="padding:10px 20px; background:green; color:white; border-radius:50px; cursor:pointer;">
+        Go to Checkout ($ <span id="cart-total-nav"> 0.00 </span> )
+    </button>
 </header>
 
+<div class="products"></div>
 
-	<div class="products"></div>
+<script src="product-script.js"></script>
 
-	<script src="product-script.js" defer ></script>
+<script>
+function submit() {
+    var valid = true;
 
+    // 1. Clear previous errors
+    var inputs = document.querySelectorAll("input");
+    inputs.forEach(input => input.classList.remove("error"));
+    
+    var errors = document.querySelectorAll(".error-msg");
+    errors.forEach(err => err.style.display = "none");
+
+    // FIX: Safely check if msg-success exists before trying to hide it
+    const successMsg = document.getElementById("msg-success");
+    if (successMsg) {
+        successMsg.style.display = "none";
+    }
+    
+    document.getElementById("msg-error").style.display = "none";
+
+    // 2. Perform Validations
+    const firstName = document.getElementById("first-name").value.trim();
+    if (firstName === "") {
+        document.getElementById("first-name").classList.add("error");
+        document.getElementById("err-first").style.display = "block";
+        valid = false;
+    }
+
+    const email = document.getElementById("email").value.trim();
+    if (email === "" || !email.includes("@")) {
+        document.getElementById("email").classList.add("error");
+        document.getElementById("err-email").style.display = "block";
+        valid = false;
+    }
+
+    const card = document.getElementById("card-number").value.trim();
+    if (card.length !== 16 || isNaN(card)) {
+        document.getElementById("card-number").classList.add("error");
+        document.getElementById("err-card").style.display = "block";
+        valid = false;
+    }
+
+    // 3. SUCCESS LOGIC
+    if (valid) {
+        document.getElementById("msg-error").style.display = "none";
+        document.getElementById("checkout-modal").style.display = "none";
+
+        // Show the GIF modal
+        const gifModal = document.getElementById("gif-modal");
+        gifModal.style.display = "block";
+
+        setTimeout(() => {
+            location.reload();
+        }, 4000);
+    } else {
+        document.getElementById("msg-error").style.display = "block";
+    }
+}
+</script>
 
     <!-- FOOTER -->
     <footer>
