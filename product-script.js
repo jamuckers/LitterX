@@ -27,7 +27,7 @@ fetch('products.json')
     });
 
     document.querySelector(".products").innerHTML = output;
-    document.querySelector("#store-title").innerText = "WELCOME TO GARBAGE GIFTS GALORE! BLA";
+    document.querySelector("#store-title").innerText = "CHECK OUT HERE->";
   });
 
 // 2. Updated Event Listener for "+" and "-"
