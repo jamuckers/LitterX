@@ -21,9 +21,9 @@ fetch('products.json')
           <p class="price"><span>$${item.price}</span></p>
           
           <div class="controls">
-            <button type="button" class="adjust-btn" data-action="minus" data-index="${index}" data-price="${item.price}">-</button>
+            <button type="button" class="adjust-btn" data-action="minus" data-index="${index}" data-price="${item.price}">&nbsp;&nbsp; - &nbsp;&nbsp;</button>
             <span id="qty-${index}" style="font-weight:bold; margin: 0 10px;">0</span>
-            <button type="button" class="adjust-btn" data-action="plus" data-index="${index}" data-price="${item.price}">+</button>
+            <button type="button" class="adjust-btn" data-action="plus" data-index="${index}" data-price="${item.price}">&nbsp;&nbsp;+&nbsp;&nbsp;</button>
           </div>
           <p style="font-size: 0.8em; color: gray;">Total orders for this item: <span id="tally-${index}">0</span></p>
         </div>`;

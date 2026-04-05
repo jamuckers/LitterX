@@ -25,11 +25,17 @@
   height: 300px;
   display: block;
   margin:0 auto;
+
+
 }
 
 .product-card > p:last-of-type {
     text-align: center;
     padding-bottom: 15px; /* Adds a bit of breathing room at the very bottom */
+}
+
+.title{
+  font-weight: bold;
 }
 
 .title, .description, .price {
@@ -47,6 +53,10 @@
     background-color: #f9f9f9; /* Subtle background for the interaction area */
 }
 
+.adjust-btn {
+    font-size: 24px;
+    font-weight: bold;
+}
 
 /* The background overlay */
 .modal {
