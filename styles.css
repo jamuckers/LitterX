@@ -27,10 +27,25 @@
   margin:0 auto;
 }
 
+.product-card > p:last-of-type {
+    text-align: center;
+    padding-bottom: 15px; /* Adds a bit of breathing room at the very bottom */
+}
 
-.title{padding:50px;}
-.description{padding:50px;}
-.price{padding:50px;}
+.title, .description, .price {
+    padding: 10px 20px; 
+    margin: 0;
+    text-align: center;
+}
+
+/* Align the - and + row */
+.controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    background-color: #f9f9f9; /* Subtle background for the interaction area */
+}
 
 
 /* The background overlay */
