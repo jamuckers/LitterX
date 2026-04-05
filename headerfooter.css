@@ -34,7 +34,8 @@ nav ul {
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-weight:bold;
+    font-size: 0.9rem;
 }
 
 nav ul li a:hover {
