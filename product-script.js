@@ -13,12 +13,7 @@ fetch('products.json')
       output += `
         <div class="product-card">
           
-          <model-viewer src="${item.model}" 
-              ar shadow-intensity="1" 
-              camera-controls 
-              touch-action="pan-y" 
-              style="width: 100%; height: 300px;">
-          </model-viewer>
+
           <img src="${item.image}" class="product-image" width="500" height="500" alt="${item.title}">
           <p class="title">${item.title}</p>
           <p class="description">${item.description}</p>
