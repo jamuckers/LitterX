@@ -1,6 +1,7 @@
 [
 	
 {
+	"model" : "products/01.glb",
 	"image" : "products/01.jpg",
 	"title" : "Product title",
 	"description": "T-Shirt Clean up Crew",
@@ -8,6 +9,7 @@
 },
 
 {
+	"model" : "products/02.glb",
 	"image" : "products/02.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
@@ -16,6 +18,7 @@
 
 
 {
+	"model" : "products/03.glb",	
 	"image" : "products/03.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
@@ -23,6 +26,7 @@
 },
 
 {
+	"model" : "products/04.glb",	
 	"image" : "products/04.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
@@ -30,6 +34,7 @@
 },
 
 {
+	"model" : "products/05.glb",	
 	"image" : "products/05.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
@@ -37,6 +42,7 @@
 },
 
 {
+	"model" : "products/06.glb",	
 	"image" : "products/06.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
@@ -44,6 +50,7 @@
 },
 
 {
+	"model" : "products/07.glb",	
 	"image" : "products/07.jpg",
 	"title" : "Product title",
 	"description": "Lorem ipsum",
