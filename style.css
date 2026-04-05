@@ -102,7 +102,8 @@ nav ul li a:hover {
 }
 
 .hero-text {
-  width: 50%;
+  width: 100%; /* Allow it to fill the container */
+  max-width: 500px; /* But don't let it get too wide on desktop */
 }
 
 .hero-text h1 {
