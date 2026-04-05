@@ -1,4 +1,6 @@
 let totalCartPrice = 0;
+let tax = 0;
+let totalTotal = 0;
 // 1. Create a storage for quantities: { index: quantity }
 let cartQuantities = {}; 
 
@@ -55,6 +57,7 @@ document.querySelector(".products").addEventListener("click", (e) => {
 
     //Update the Checkout Total
     document.querySelector('#cart-total-nav').innerText = totalCartPrice.toFixed(2);
+    document.querySelector('#cart-total-nav').innerText = totalCartPrice.toFixed(2);
 
 
 
@@ -67,11 +70,19 @@ const modal = document.querySelector("#checkout-modal");
 const openBtn = document.querySelector("#open-checkout");
 const closeBtn = document.querySelector(".close-btn");
 const finalTotalSpan = document.querySelector("#final-total");
+const tax = document.querySelector("#tax");
+const totalTotalSpan = document.querySelector("#total-total");
+
+
 
 // OPEN MODAL
+
+
 openBtn.addEventListener("click", () => {
     // Inject the current totalCartPrice into the modal
     finalTotalSpan.innerText = totalCartPrice.toFixed(2);
+    tax.innerText = (totalCartPrice * 0.15).toFixed(2);
+    totalTotalSpan = (totalCartPrice *1.15).toFixed(2);
     modal.style.display = "block";
 });
 
