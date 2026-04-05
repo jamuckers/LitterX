@@ -1,6 +1,5 @@
 let totalCartPrice = 0;
-let tax = 0;
-let totalTotal = 0;
+
 // 1. Create a storage for quantities: { index: quantity }
 let cartQuantities = {}; 
 
