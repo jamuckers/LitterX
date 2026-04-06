@@ -10,7 +10,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    box-sizing: border-box;
+    /*width: 100%; */
     flex-wrap: wrap; /* Allows links to wrap if the screen is too narrow */
 }
 
@@ -48,7 +49,8 @@ nav ul li a:hover {
     color: white;
     text-align: center;
     padding: 60px 20px;
-    width: 100%; /* Explicitly define width */
+    /*width: 100%; */
+    box-sizing: border-box;
     overflow: hidden; /* Safety net for large text or images */
 }
 

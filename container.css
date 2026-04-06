@@ -338,6 +338,8 @@ h2 {
 
 /* Table */
 table {
+    table-layout: fixed; /* Prevents cells from pushing the width out */
+    word-wrap: break-word;
     width: 100%;
     border-collapse: collapse;
     background-color: white;
