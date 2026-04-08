@@ -28,7 +28,7 @@ nav ul {
     margin: 0;
     padding: 0;
     display: flex;
-    gap: 25px;
+    gap: 10px;
     flex-wrap: wrap; /* Prevents links from pushing past the screen edge */
     justify-content: flex-end;
 }
