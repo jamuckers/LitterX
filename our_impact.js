@@ -10,10 +10,10 @@ window.addEventListener("DOMContentLoaded", () => {
         handle.style.left = value + "%";
     }
 
-    // 👇 Set initial state properly
+
     updateSlider(slider.value);
 
-    // 👇 Update on drag
+
     slider.addEventListener('input', () => {
         updateSlider(slider.value);
     });
