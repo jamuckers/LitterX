@@ -98,6 +98,32 @@ nav ul li a:hover {
 .btn-outline:hover {
     background-color: rgba(255,255,255,0.12);
 }
+/* BUTTONS */
+.btn-green {
+  background: #2f6f44; /* UPDATED */
+  color: white;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-light {
+  background: #f5f5f5;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hero-image {
+  width: 50%;
+}
+
+.hero-image img {
+  width: 100%;
+  border-radius: 15px;
+}
 
 /* HOW IT WORKS */
 #how {
