@@ -610,12 +610,3 @@ tbody td:first-child {
     gap: 14px;
     justify-content: center;
 }
-
-/* Footer */
-footer {
-    background-color: #1a2e1e;
-    color: rgba(255,255,255,0.5);
-    text-align: center;
-    padding: 18px;
-    font-size: 0.82rem;
-}
