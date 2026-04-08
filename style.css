@@ -12,6 +12,8 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    width: 100%;
+    flex-wrap: wrap; /* Allows links to wrap if the screen is too narrow */    
 }
 
 nav .logo {
@@ -27,56 +29,21 @@ nav ul {
     padding: 0;
     display: flex;
     gap: 25px;
+    flex-wrap: wrap; /* Prevents links from pushing past the screen edge */
+    justify-content: flex-end;
 }
 
 nav ul li a {
     color: white;
     text-decoration: none;
-    font-size: 0.95rem;
+    font-weight:bold;
+    font-size: 0.8rem;
 }
 
 nav ul li a:hover {
     text-decoration: underline;
 }
 
-#navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 30px;
-  background: white;
-  border-bottom: 1px solid #ddd;
-}
-
-.logo {
-  color: #2f6f44; /* UPDATED */
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin: 0;
-}
-
-.nav-links {
-  display: flex;
-  align-items: center;
-  gap: 28px;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: #222;
-  font-size: 14px;
-}
-
-.nav-links a:hover {
-  color: #2f6f44; /* UPDATED */
-}
-
-#navbar h2 {
-  color: #2f6f44; /* UPDATED */
-  margin: 0;
-}
 
 /* HERO SECTION */
 .hero {
