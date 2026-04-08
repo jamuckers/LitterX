@@ -1,41 +1,420 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - CleanTO</title>
+    <style>
+        /* General */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f7f1;
+            color: #1a2e1e;
+        }
 
-<meta name="keywords" content="HTML">
+        /* Navigation */
+        nav {
+            background-color: #2c6e49;
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-<link rel="stylesheet" href="headerfooter.css">
-<link rel="stylesheet" href="container.css">
-    
+        nav .logo {
+            color: white;
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+        }
+
+        nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero */
+        .hero {
+            background-color: #2c6e49;
+            color: white;
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h1 {
+            font-size: 2.2rem;
+            margin-bottom: 12px;
+        }
+
+        .hero p {
+            font-size: 1rem;
+            margin-bottom: 28px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+        }
+
+        .btn-white {
+            background-color: white;
+            color: #2c6e49;
+            border: none;
+            padding: 12px 26px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-white:hover {
+            background-color: #d8f3dc;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: white;
+            border: 2px solid white;
+            padding: 12px 26px;
+            font-size: 0.95rem;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(255,255,255,0.12);
+        }
+
+        /* Container */
+        .container {
+            max-width: 880px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+
+        h2 {
+            color: #2c6e49;
+            margin-bottom: 6px;
+        }
+
+        .subtitle {
+            color: #5a7362;
+            margin-bottom: 20px;
+        }
+
+        /* Toggle */
+        .toggle-group {
+            display: flex;
+            margin-bottom: 22px;
+            width: fit-content;
+        }
+
+        .toggle-group button {
+            padding: 10px 28px;
+            font-size: 0.95rem;
+            border: 2px solid #2c6e49;
+            background-color: white;
+            color: #2c6e49;
+            cursor: pointer;
+            font-family: Arial, sans-serif;
+        }
+
+        .toggle-group button:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+
+        .toggle-group button:last-child {
+            border-radius: 0 6px 6px 0;
+            border-left: none;
+        }
+
+        .toggle-group button.active {
+            background-color: #2c6e49;
+            color: white;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        thead {
+            background-color: #2c6e49;
+            color: white;
+        }
+
+        thead th {
+            padding: 13px 18px;
+            text-align: left;
+            font-size: 0.88rem;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #d8f3dc;
+            cursor: pointer;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f0f7f1;
+        }
+
+        tbody tr.selected {
+            background-color: #d8f3dc;
+        }
+
+        tbody td {
+            padding: 13px 18px;
+            font-size: 0.92rem;
+        }
+
+        tbody td:first-child {
+            font-weight: bold;
+            color: #2c6e49;
+        }
+
+        /* Form card */
+        .form-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 28px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+        }
+
+        .selected-display {
+            background-color: #d8f3dc;
+            border: 1px solid #b2dfba;
+            border-radius: 6px;
+            padding: 12px 16px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .selected-display .amount {
+            font-size: 1.15rem;
+            font-weight: bold;
+            color: #2c6e49;
+        }
+
+        .freq-tag {
+            font-size: 0.82rem;
+            background-color: #2c6e49;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .form-group label {
+            font-size: 0.83rem;
+            font-weight: bold;
+            color: #5a7362;
+            margin-bottom: 5px;
+        }
+
+        .form-group input {
+            border: 1.5px solid #c3dfc9;
+            border-radius: 6px;
+            padding: 10px 13px;
+            font-size: 0.93rem;
+            font-family: Arial, sans-serif;
+            outline: none;
+            background-color: #f0f7f1;
+        }
+
+        .form-group input:focus {
+            border-color: #2c6e49;
+            background-color: white;
+        }
+
+        .form-group input.error {
+            border-color: #c0392b;
+            background-color: #fff5f5;
+        }
+
+        .error-msg {
+            color: #c0392b;
+            font-size: 0.8rem;
+            margin-top: 4px;
+            display: none;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background-color: #2c6e49;
+            color: white;
+            border: none;
+            padding: 13px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-family: Arial, sans-serif;
+        }
+
+        .submit-btn:hover {
+            background-color: #4c956c;
+        }
+
+        /* Trust signals */
+        .trust-row {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin-top: 14px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            font-size: 0.8rem;
+            color: #5a7362;
+        }
+
+        /* Message boxes */
+        .msg-box {
+            border-radius: 6px;
+            padding: 13px 16px;
+            margin-top: 14px;
+            display: none;
+            font-size: 0.92rem;
+        }
+
+        .msg-box.success {
+            background-color: #d4edda;
+            color: #1a5c2a;
+            border: 1px solid #b2dfba;
+        }
+
+        .msg-box.error {
+            background-color: #fdecea;
+            color: #c0392b;
+            border: 1px solid #f5c6c3;
+        }
+
+        /* Impact section */
+        .impact-grid {
+            display: flex;
+            gap: 18px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .impact-card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 22px 18px;
+            flex: 1;
+            min-width: 180px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-top: 4px solid #2c6e49;
+        }
+
+        .impact-card h3 {
+            color: #2c6e49;
+            font-size: 1.7rem;
+            margin-bottom: 6px;
+        }
+
+        .impact-card p {
+            color: #5a7362;
+            font-size: 0.86rem;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            background-color: #2c6e49;
+            color: white;
+            text-align: center;
+            padding: 50px 20px;
+            margin-top: 60px;
+        }
+
+        .bottom-cta h2 {
+            color: white;
+            font-size: 1.7rem;
+            margin-bottom: 10px;
+        }
+
+        .bottom-cta p {
+            color: rgba(255,255,255,0.78);
+            margin-bottom: 22px;
+        }
+
+        .bottom-cta-btns {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #1a2e1e;
+            color: rgba(255,255,255,0.5);
+            text-align: center;
+            padding: 18px;
+            font-size: 0.82rem;
+        }
+    </style>
 </head>
 <body>
-
 
     <!-- NAVIGATION -->
     <nav>
         <a href="#" class="logo">🌿 CleanTO</a>
         <ul>
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="impact.html" >Impact</a></li>
-            <li><a href="clean.html" >Clean With Us</a></li>
-            <li><a href="shop.html" >Shop</a></li>
-            <li><a href="donations.html" >Donate</a></li>
-            <li><a href="about.html" >About</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/index.html">Home</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/impact.html">Impact</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/clean.html">Clean With Us</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/shop.html">Shop</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/donations.html">Donate</a></li>
+            <li><a href="https://jamuckers.github.io/LitterX/about.html">About</a></li>
         </ul>
     </nav>
 
-    
     <!-- HERO -->
     <div class="hero">
         <h1>Clean Toronto. One Dollar at a Time.</h1>
         <p>Every donation goes directly to community cleanups and keeping Toronto's streets clean.</p>
-        <div class="hero-buttons">
-            <button class="btn-white" onclick="scrollToForm()">Donate Once</button>
-            <button class="btn-outline" onclick="setMonthly()">Become a Monthly Donor</button>
-        </div>
     </div>
 
     <!-- MAIN CONTENT -->
@@ -55,35 +434,29 @@
             <thead>
                 <tr>
                     <th>Amount</th>
-                    <th>One-Time Impact</th>
-                    <th>Monthly Impact</th>
+                    <th id="impact-header">One-Time Impact</th>
                 </tr>
             </thead>
             <tbody>
                 <tr class="selected" onclick="selectAmount(this, 5)">
                     <td>$5</td>
-                    <td>Gloves and bags for one volunteer</td>
-                    <td>Equips 12 volunteers over the year</td>
+                    <td class="impact-text" data-onetime="Gloves and bags for one volunteer" data-monthly="Equips 12 volunteers over the year">Gloves and bags for one volunteer</td>
                 </tr>
                 <tr onclick="selectAmount(this, 10)">
                     <td>$10</td>
-                    <td>Basic supplies for a small cleanup</td>
-                    <td>One neighbourhood cleanup per month</td>
+                    <td class="impact-text" data-onetime="Basic supplies for a small cleanup" data-monthly="One neighbourhood cleanup per month">Basic supplies for a small cleanup</td>
                 </tr>
                 <tr onclick="selectAmount(this, 15)">
                     <td>$15</td>
-                    <td>Full cleanup kit for an event</td>
-                    <td>Gear for two events per month</td>
+                    <td class="impact-text" data-onetime="Full cleanup kit for an event" data-monthly="Gear for two events per month">Full cleanup kit for an event</td>
                 </tr>
                 <tr onclick="selectAmount(this, 30)">
                     <td>$30</td>
-                    <td>Fund a neighbourhood cleanup session</td>
-                    <td>Supplies for a full cleanup season</td>
+                    <td class="impact-text" data-onetime="Fund a neighbourhood cleanup session" data-monthly="Supplies for a full cleanup season">Fund a neighbourhood cleanup session</td>
                 </tr>
                 <tr onclick="selectAmount(this, 60)">
                     <td>$60</td>
-                    <td>Supplies for a full community event</td>
-                    <td>Year-round cleanup program</td>
+                    <td class="impact-text" data-onetime="Supplies for a full community event" data-monthly="Year-round cleanup program">Supplies for a full community event</td>
                 </tr>
             </tbody>
         </table>
@@ -185,14 +558,13 @@
         <h2>Not Ready to Donate?</h2>
         <p>You can still make an impact. Join a cleanup or share CleanTO with someone who cares.</p>
         <div class="bottom-cta-btns">
-            <button class="btn-white">Join an Event</button>
-            <button class="btn-outline">Share CleanTO</button>
+            <button class="btn-white" onclick="window.location.href='https://jamuckers.github.io/LitterX/clean.html'">Join an Event</button>
         </div>
     </div>
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2025 CleanTO. All rights reserved.</p>
+        <p>&copy; 2026 CleanTO. All rights reserved.</p>
     </footer>
 
     <!-- JAVASCRIPT -->
@@ -203,16 +575,26 @@
         function setFrequency(freq) {
             currentFrequency = freq;
 
+            var cells = document.querySelectorAll(".impact-text");
+
             if (freq === "onetime") {
                 document.getElementById("btn-onetime").classList.add("active");
                 document.getElementById("btn-monthly").classList.remove("active");
                 document.getElementById("summary-freq").textContent = "One-Time";
                 document.getElementById("submit-btn").textContent = "Donate Now";
+                document.getElementById("impact-header").textContent = "One-Time Impact";
+                for (var i = 0; i < cells.length; i++) {
+                    cells[i].textContent = cells[i].getAttribute("data-onetime");
+                }
             } else {
                 document.getElementById("btn-monthly").classList.add("active");
                 document.getElementById("btn-onetime").classList.remove("active");
                 document.getElementById("summary-freq").textContent = "Monthly";
                 document.getElementById("submit-btn").textContent = "Start My Monthly Gift";
+                document.getElementById("impact-header").textContent = "Monthly Impact";
+                for (var i = 0; i < cells.length; i++) {
+                    cells[i].textContent = cells[i].getAttribute("data-monthly");
+                }
             }
         }
 
