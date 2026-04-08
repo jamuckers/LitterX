@@ -1,205 +1,870 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CleanTO – About</title>
+  <link rel="stylesheet" href="headerfooter.css" />
+  <link rel="stylesheet" href="container.css" />
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ── Page-specific styles only ── */
 
-    <link rel="stylesheet" href="headerfooter.css">
-    <link rel="stylesheet" href="container.css">
+    /* Hero banner */
+    .hero-banner {
+      width: 100%;
+      height: 360px;
+      overflow: hidden;
+      display: block;
+    }
+    .hero-banner svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
 
-    <title>Donate - CleanTO</title>
+    /* Mission – white left-aligned on this page
+       (headerfooter.css .hero is green/centered; container.css handles width) */
+    #mission.about-mission {
+      background: #fff;
+      color: #222;
+      text-align: left;
+      padding: 60px 0;
+    }
+    #mission.about-mission h2 {
+      font-size: 2rem;
+      color: #2c6e49;
+      margin-bottom: 16px;
+    }
+    #mission.about-mission p {
+      font-size: 15px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 18px;
+    }
+    .mission-tagline {
+      font-style: italic;
+      font-size: 1.4rem;
+      color: #2c6e49;
+      margin-top: 20px;
+    }
 
+    /* Team section */
+    #team {
+      background: #f0f7f1;
+      padding: 60px 0;
+      text-align: center;
+    }
+    #team h2 {
+      font-size: 2rem;
+      color: #2c6e49;
+      margin-bottom: 10px;
+    }
+    .team-subtitle {
+      color: #5a7362;
+      font-size: 15px;
+      max-width: 500px;
+      margin: 0 auto 44px;
+      line-height: 1.6;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .team-member {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .member-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .member-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .member-name {
+      font-size: 14px;
+      font-weight: bold;
+      color: #1a2e1e;
+    }
+
+    /* Join the Crew */
+    #join {
+      background: #fff;
+      padding: 60px 0;
+      text-align: center;
+    }
+    #join h2 {
+      font-size: 2rem;
+      color: #2c6e49;
+      margin-bottom: 30px;
+    }
+    .roles-list {
+      text-align: left;
+    }
+    .role-item {
+      background: white;
+      border: 1px solid #d8f3dc;
+      border-radius: 8px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 24px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+    .role-content { flex: 1; }
+    .role-item h3 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a2e1e;
+      margin: 0 0 8px;
+    }
+    .role-item p {
+      font-size: 13.5px;
+      color: #5a7362;
+      line-height: 1.65;
+      margin: 0 0 14px;
+    }
+    .apply-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: #2c6e49;
+      font-size: 13px;
+      font-weight: bold;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: gap 0.2s;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0;
+      font-family: inherit;
+    }
+    .apply-link::after { content: '→'; font-size: 15px; }
+    .apply-link:hover  { gap: 13px; }
+
+    .role-socials {
+      display: flex;
+      gap: 8px;
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+    .role-socials a {
+      width: 30px;
+      height: 30px;
+      border: 1px solid #c3dfc9;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      text-decoration: none;
+      color: #5a7362;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .role-socials a:hover {
+      border-color: #2c6e49;
+      color: #2c6e49;
+      transform: translateY(-2px);
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+      .team-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+      .role-item  { flex-direction: column; }
+    }
+    @media (max-width: 600px) {
+      .hero-banner { height: 220px; }
+      .team-grid   { grid-template-columns: 1fr 1fr; }
+    }
+
+    /* ── Job page styles (added) ── */
+    #job-page {
+      display: none;
+      min-height: 100vh;
+      background: #f9fafb;
+    }
+    #job-page.active { display: block; }
+
+    .job-back-bar {
+      background: #fff;
+      border-bottom: 1px solid #d0e8d8;
+      padding: 12px 0;
+    }
+    .job-back-bar .container {
+      display: flex;
+      align-items: center;
+    }
+    .job-back-btn {
+      background: none;
+      border: 1px solid #c3dfc9;
+      border-radius: 6px;
+      padding: 7px 16px;
+      font-size: 13px;
+      color: #2c6e49;
+      cursor: pointer;
+      font-family: inherit;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: background 0.2s;
+    }
+    .job-back-btn:hover { background: #f0f7f1; }
+
+    .job-header-block {
+      background: #fff;
+      border-bottom: 1px solid #e8f3ec;
+      padding: 36px 0 28px;
+    }
+    .job-badge {
+      display: inline-block;
+      background: #f0f7f1;
+      color: #2c6e49;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid #c3dfc9;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .job-header-block h1 {
+      font-size: 2rem;
+      color: #1a2e1e;
+      margin: 0 0 12px;
+    }
+    .job-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+    .job-meta span {
+      font-size: 13.5px;
+      color: #5a7362;
+    }
+
+    .job-body {
+      padding: 40px 0;
+      display: grid;
+      grid-template-columns: 1fr 300px;
+      gap: 28px;
+      align-items: start;
+    }
+    @media (max-width: 760px) {
+      .job-body { grid-template-columns: 1fr; }
+    }
+
+    .job-main {
+      background: #fff;
+      border: 1px solid #e0e8e4;
+      border-radius: 10px;
+      padding: 30px;
+    }
+    .job-main h3 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a2e1e;
+      margin: 24px 0 10px;
+    }
+    .job-main h3:first-child { margin-top: 0; }
+    .job-main p {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 10px;
+    }
+    .job-main ul {
+      padding-left: 20px;
+      margin-bottom: 4px;
+    }
+    .job-main li {
+      font-size: 14px;
+      color: #444;
+      line-height: 1.8;
+      margin-bottom: 4px;
+    }
+
+    .job-sidebar {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .apply-card {
+      background: #fff;
+      border: 1px solid #d8f3dc;
+      border-radius: 10px;
+      padding: 24px;
+    }
+    .apply-card h4 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a2e1e;
+      margin-bottom: 8px;
+    }
+    .apply-card p {
+      font-size: 13px;
+      color: #5a7362;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+    .apply-card-btn {
+      width: 100%;
+      background: #2c6e49;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 12px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      margin-bottom: 10px;
+      transition: background 0.2s;
+    }
+    .apply-card-btn:hover { background: #215a3a; }
+    .save-btn {
+      width: 100%;
+      background: #fff;
+      color: #2c6e49;
+      border: 1px solid #2c6e49;
+      border-radius: 8px;
+      padding: 11px;
+      font-size: 14px;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .save-btn:hover { background: #f0f7f1; }
+
+    .org-card {
+      background: #fff;
+      border: 1px solid #e0e8e4;
+      border-radius: 10px;
+      padding: 22px;
+    }
+    .org-logo-box {
+      width: 46px;
+      height: 46px;
+      background: #2c6e49;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 10px;
+    }
+    .org-card h4 {
+      font-size: 14px;
+      font-weight: bold;
+      color: #1a2e1e;
+      margin-bottom: 6px;
+    }
+    .org-card p {
+      font-size: 12.5px;
+      color: #5a7362;
+      line-height: 1.55;
+    }
+
+    /* Application form inside job main */
+    .app-form-section {
+      background: #f0f7f1;
+      border-radius: 8px;
+      padding: 24px;
+      margin-top: 28px;
+    }
+    .app-form-section h4 {
+      font-size: 15px;
+      font-weight: bold;
+      color: #1a2e1e;
+      margin-bottom: 18px;
+    }
+    .form-row { margin-bottom: 14px; }
+    .form-row label {
+      display: block;
+      font-size: 11.5px;
+      color: #5a7362;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.4px;
+      margin-bottom: 5px;
+    }
+    .form-row input,
+    .form-row textarea,
+    .form-row select {
+      width: 100%;
+      background: #fff;
+      border: 1px solid #c3dfc9;
+      border-radius: 6px;
+      padding: 9px 12px;
+      font-size: 13.5px;
+      color: #1a2e1e;
+      font-family: inherit;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .form-row input:focus,
+    .form-row textarea:focus { border-color: #2c6e49; }
+    .form-row textarea { height: 90px; resize: vertical; }
+    .form-submit-btn {
+      background: #2c6e49;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 28px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .form-submit-btn:hover { background: #215a3a; }
+
+    /* NEW: Validation Styles */
+    .form-row input.error,
+    .form-row textarea.error {
+      border-color: #d93025;
+      background-color: #fff2f2;
+    }
+    .error-message {
+      color: #d93025;
+      font-size: 11px;
+      font-weight: bold;
+      margin-top: 4px;
+      display: block;
+    }
+
+    /* Success modal */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.45);
+      align-items: center;
+      justify-content: center;
+      z-index: 200;
+    }
+    .modal-overlay.active { display: flex; }
+    .modal-box {
+      background: #fff;
+      border-radius: 12px;
+      padding: 32px 28px 28px;
+      max-width: 420px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+    }
+    .modal-close-btn {
+      position: absolute;
+      top: 14px; right: 18px;
+      background: none;
+      border: none;
+      font-size: 22px;
+      cursor: pointer;
+      color: #888;
+      line-height: 1;
+    }
+    .modal-check {
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      background: #f0f7f1;
+      border: 2px solid #2c6e49;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: #2c6e49;
+      margin: 0 auto 16px;
+    }
+    .modal-box h3 {
+      font-size: 1.3rem;
+      color: #1a2e1e;
+      margin-bottom: 8px;
+    }
+    .modal-box p {
+      font-size: 13.5px;
+      color: #5a7362;
+      line-height: 1.65;
+      margin-bottom: 22px;
+    }
+    .modal-done-btn {
+      background: #2c6e49;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 11px 32px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      font-family: inherit;
+      transition: background 0.2s;
+    }
+    .modal-done-btn:hover { background: #215a3a; }
+  </style>
 </head>
-
 <body>
 
-    <!-- NAVIGATION -->
-    <nav>
-        <a href="#" class="logo">🌿 CleanTO</a>
-        <ul>
-            <li><a href="index.html" >Home</a></li>
-            <li><a href="impact.html" >Impact</a></li>
-            <li><a href="clean.html" >Clean With Us</a></li>
-            <li><a href="shop.html" >Shop</a></li>
-            <li><a href="donations.html" >Donate</a></li>
-            <li><a href="about.html" >About</a></li>
-        </ul>
-    </nav>
+  <nav>
+    <a class="logo" href="#">🌿 CleanTO</a>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Impact</a></li>
+      <li><a href="#">Clean With Us</a></li>
+      <li><a href="#">Shop</a></li>
+      <li><a href="#">Donate</a></li>
+      <li><a href="#" style="font-weight:bold;">About</a></li>
+    </ul>
+  </nav>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Yabba Dabba Do it.</h1>
-        <p>Banana nana bo bana bonana fana fo fana. fee fie fo nana. Banana. </p>
-        </div>
+  <div id="about-page">
+    <div class="hero-banner">
+      <svg viewBox="0 0 1200 360" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <defs>
+          <linearGradient id="bgG" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#9ecfae"/>
+            <stop offset="50%" stop-color="#5a9e72"/>
+            <stop offset="100%" stop-color="#2c6e49"/>
+          </linearGradient>
+          <linearGradient id="hA" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#e8c4e0"/><stop offset="100%" stop-color="#a0b8e8"/>
+          </linearGradient>
+          <linearGradient id="hB" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#c4e8d0"/><stop offset="100%" stop-color="#e8d4a8"/>
+          </linearGradient>
+          <linearGradient id="hC" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#d0a8e8"/><stop offset="100%" stop-color="#a8d4e8"/>
+          </linearGradient>
+        </defs>
+        <rect width="1200" height="360" fill="url(#bgG)"/>
+        <rect width="1200" height="360" fill="rgba(255,255,255,0.06)"/>
+        <ellipse cx="95"   cy="185" rx="36" ry="42" fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="95"   cy="136" rx="22" ry="24" fill="#d4a090"  opacity=".9"/>
+        <rect    x="65"    y="222"  width="60" height="115" rx="8"   fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="215"  cy="175" rx="40" ry="48" fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="215"  cy="120" rx="25" ry="27" fill="#8a7060"  opacity=".9"/>
+        <rect    x="181"   y="218"  width="68" height="125" rx="8"  fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="340"  cy="180" rx="38" ry="46" fill="url(#hB)" opacity=".85"/>
+        <ellipse cx="340"  cy="127" rx="24" ry="26" fill="#c0a080"  opacity=".9"/>
+        <rect    x="308"   y="221"  width="64" height="120" rx="8"  fill="url(#hB)" opacity=".85"/>
+        <ellipse cx="468"  cy="165" rx="42" ry="52" fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="468"  cy="106" rx="27" ry="29" fill="#a08870"  opacity=".9"/>
+        <rect    x="432"   y="212"  width="72" height="135" rx="8"  fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="596"  cy="178" rx="39" ry="47" fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="596"  cy="124" rx="24" ry="26" fill="#704030"  opacity=".9"/>
+        <rect    x="563"   y="220"  width="66" height="122" rx="8"  fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="720"  cy="183" rx="37" ry="45" fill="url(#hB)" opacity=".85"/>
+        <ellipse cx="720"  cy="131" rx="23" ry="25" fill="#d0b090"  opacity=".9"/>
+        <rect    x="689"   y="223"  width="62" height="118" rx="8"  fill="url(#hB)" opacity=".85"/>
+        <ellipse cx="845"  cy="172" rx="41" ry="50" fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="845"  cy="115" rx="26" ry="28" fill="#906850"  opacity=".9"/>
+        <rect    x="810"   y="217"  width="70" height="130" rx="8"  fill="url(#hA)" opacity=".85"/>
+        <ellipse cx="968"  cy="181" rx="38" ry="46" fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="968"  cy="128" rx="24" ry="26" fill="#c09878"  opacity=".9"/>
+        <rect    x="936"   y="222"  width="64" height="120" rx="8"  fill="url(#hC)" opacity=".85"/>
+        <ellipse cx="1085" cy="186" rx="36" ry="44" fill="url(#hB)" opacity=".85"/>
+        <ellipse cx="1085" cy="135" rx="22" ry="24" fill="#a07858"  opacity=".9"/>
+        <rect    x="1055"  y="225"  width="60" height="112" rx="8"  fill="url(#hB)" opacity=".85"/>
+        <rect x="0" y="334" width="1200" height="26" fill="rgba(0,0,0,0.14)"/>
+      </svg>
     </div>
 
+    <section id="mission" class="about-mission">
+      <div class="container">
+        <h2>Our Mission</h2>
+        <p>What started out as a simple and fun idea has grown into a movement powered by community, and a shared sense of responsibility. We saw a problem sweeping Toronto: Litter was everywhere, and while many people cared, there was no easy, engaging way to take action in their everyday lives.</p>
+        <p>So we built a platform that combines real-world clean-up efforts with a gamified experience – empowering people to do good in a way that feels rewarding, social, and fun. Whether it's snapping a photo of litter, joining a cleanup event, or competing with friends on the leaderboard, every action contributes to something bigger.</p>
+        <p>In just a few months, our community has already removed tonnes of waste from the city, proving that when people are given the right tools and motivation, real change happens. Backed by local organizations, fueled by passionate users, and inspired by a cleaner future, we're redefining what it means to make an impact!</p>
+        <p class="mission-tagline">one small action at a time!</p>
+      </div>
+    </section>
 
-    <!--------------------------------------------------------------------------------------------------->
-
-    <!-- MAIN CONTENT -->
-    <div class="container">
-
-       <!-- ANOTHER BLABLA -->
-        <h2>One Image template</h2>
-        <p class="subtitle">Your money is trash.</p>
-
-        <div class="impact-grid">
-            <div class="impact-image">
-                <h3><img src="https://peelregion.ca/sites/default/files/styles/450x3/public/2025-10/recycling-cart-curbside-feature-panel.jpg?itok=WFu6fQq-" ></h4>
-                <p>is not alot of money anymore!</p>
-            </div>
-
+    <section id="team">
+      <div class="container">
+        <h2>Our Team</h2>
+        <p class="team-subtitle">CleanTo's team is made up of environmental activists and software developers coming together and working towards a better, cleaner future for Toronto.</p>
+        <div class="team-grid">
+          <div class="team-member">
+            <div class="member-photo"><img src="JeffreyTran.jpg" alt="Jeffrey Tran"/></div>
+            <span class="member-name">Jeffrey Tran</span>
+          </div>
+          <div class="team-member">
+            <div class="member-photo"><img src="RaafiIslam.jpg" alt="Raafi Islam"/></div>
+            <span class="member-name">Raafi Islam</span>
+          </div>
+          <div class="team-member">
+            <div class="member-photo"><img src="NilayShah.jpg" alt="Nilay Shah"/></div>
+            <span class="member-name">Nilay Shah</span>
+          </div>
+          <div class="team-member">
+            <div class="member-photo"><img src="SathyaprakashMahendiran.jpg" alt="Sathyaprakash Mahendiran"/></div>
+            <span class="member-name">Sathyaprakash Mahendiran</span>
+          </div>
+          <div class="team-member">
+            <div class="member-photo"><img src="SuprabhaIrugaltrante.jpg" alt="Suprabha Irugalratne"/></div>
+            <span class="member-name">Suprabha Irugalratne</span>
+          </div>
+          <div class="team-member">
+            <div class="member-photo"><img src="MaxJayzeh.jpg" alt="Max Jayzeh"/></div>
+            <span class="member-name">Max Jayzeh</span>
+          </div>
         </div>
+      </div>
+    </section>
 
-
-
-
-<!------TABLE STUFF BLA BLA YA YA--->
-
-        <h2>Bla Bla Ya Ya</h2>
-        <p class="subtitle">More interesting stuff bla.</p>
-
-        <!-- TOGGLE -->
-
-
-        <!-- AMOUNT TABLE -->
-        <table id="amount-table">
-            <thead>
-                <tr>
-                    <th>Amount</th>
-                    <th>One-Time Impact</th>
-                    <th>Monthly Impact</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="selected" onclick="selectAmount(this, 5)">
-                    <td>$5</td>
-                    <td>Gloves and bags for one volunteer</td>
-                    <td>Equips 12 volunteers over the year</td>
-                </tr>
-                <tr onclick="selectAmount(this, 10)">
-                    <td>$10</td>
-                    <td>Basic supplies for a small cleanup</td>
-                    <td>One neighbourhood cleanup per month</td>
-                </tr>
-                <tr onclick="selectAmount(this, 15)">
-                    <td>$15</td>
-                    <td>Full cleanup kit for an event</td>
-                    <td>Gear for two events per month</td>
-                </tr>
-                <tr onclick="selectAmount(this, 30)">
-                    <td>$30</td>
-                    <td>Fund a neighbourhood cleanup session</td>
-                    <td>Supplies for a full cleanup season</td>
-                </tr>
-                <tr onclick="selectAmount(this, 60)">
-                    <td>$60</td>
-                    <td>Supplies for a full community event</td>
-                    <td>Year-round cleanup program</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- BUTTONS-->
-        <h2>Other buttons bla bla bla</h2>
-        <p>You can still make an impact. Join a cleanup or share CleanTO with someone who cares.</p>
-
-        <div class="form-row">
-
-            <div class="form-group">
-                <button class="btn-white">Join an Event</button>
+    <section id="join">
+      <div class="container">
+        <h2>Join The Crew</h2>
+        <div class="roles-list">
+          <div class="role-item">
+            <div class="role-content">
+              <h3>Expression of Interest</h3>
+              <p>We are always looking for potential volunteers. Applications will be considered for future opportunities.</p>
+              <button class="apply-link" onclick="showJob('eoi')">APPLY NOW</button>
             </div>
-            <div class="form-group">
-                <button class="btn-white">Trash Party!</button>
+            <div class="role-socials">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="Twitter">𝕏</a>
+              <a href="#" title="Instagram">▣</a>
             </div>
+          </div>
+          <div class="role-item">
+            <div class="role-content">
+              <h3>Community Cleanup Leader</h3>
+              <p>Help organize and lead local cleanup events across Toronto. Coordinate event logistics and locations, guide volunteers during cleanups, ensure safety and proper waste handling, and encourage participation and community engagement.</p>
+              <button class="apply-link" onclick="showJob('cleanup')">APPLY NOW</button>
+            </div>
+            <div class="role-socials">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="Twitter">𝕏</a>
+              <a href="#" title="Instagram">▣</a>
+            </div>
+          </div>
+          <div class="role-item">
+            <div class="role-content">
+              <h3>Community Ambassador</h3>
+              <p>Represent the platform in your school, or community centre. Promote the app and its mission, encourage sign-ups and participation, share updates and organize small initiatives. Ideal for students or social, outgoing individuals who enjoy networking and advocacy.</p>
+              <button class="apply-link" onclick="showJob('ambassador')">APPLY NOW</button>
+            </div>
+            <div class="role-socials">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="Twitter">𝕏</a>
+              <a href="#" title="Instagram">▣</a>
+            </div>
+          </div>
+          <div class="role-item">
+            <div class="role-content">
+              <h3>Front-End Developer</h3>
+              <p>Help us build and improve the user experience of our platform. Develop responsive, user-friendly interfaces, collaborate with designers and backend developers, and optimize performance and usability.</p>
+              <button class="apply-link" onclick="showJob('dev')">APPLY NOW</button>
+            </div>
+            <div class="role-socials">
+              <a href="#" title="Facebook">f</a>
+              <a href="#" title="Twitter">𝕏</a>
+              <a href="#" title="Instagram">▣</a>
+            </div>
+          </div>
         </div>
+      </div>
+    </section>
 
-
-
-        <!-- WHY DONATE -->
-        <h2>Why Donate?</h2>
-        <p class="subtitle">Your money does real work in Toronto.</p>
-
-        <div class="impact-grid">
-            <div class="impact-card">
-                <h3>5T</h3>
-                <p>Litter removed from Toronto in under 6 months</p>
-            </div>
-            <div class="impact-card">
-                <h3>8,500+</h3>
-                <p>Active community members powered by donations</p>
-            </div>
-            <div class="impact-card">
-                <h3>65%</h3>
-                <p>Of collected materials successfully recycled</p>
-            </div>
-        </div>
-
-
-       <!-- ANOTHER BLABLA -->
-        <h2>Something or other?</h2>
-        <p class="subtitle">Your money is trash.</p>
-
-        <div class="impact-grid">
-            <div class="impact-card">
-                <h3>more stuff</h3>
-                <p>is all people want!</p>
-            </div>
-            <div class="impact-card">
-                <h3>$1,000,000+</h3>
-                <p>is not alot of money anymore!</p>
-            </div>
-
-        </div>
-
-
-       <!-- ANOTHER BLABLA -->
-        <h2>Something or other?</h2>
-        <p class="subtitle">Your money is trash.</p>
-
-        <div class="impact-grid">
-            <div class="impact-card-generic">
-                <h3>more stuff</h3>
-                <p>is all people want!</p>
-            </div>
-            <div class="impact-image">
-                <h3><img src="https://peelregion.ca/sites/default/files/styles/450x3/public/2025-10/recycling-cart-curbside-feature-panel.jpg?itok=WFu6fQq-" ></h4>
-                <p>is not alot of money anymore!</p>
-            </div>
-
-        </div>
-
-
-
-
-<!----------------------------------------------------------->
-
-
-
-
-    </div> <!--- end container-->
-
-    <!-- BOTTOM CTA -->
-    <div class="bottom-cta">
-        <h2>Not Ready to Donate?</h2>
-        <p>You can still make an impact. Join a cleanup or share CleanTO with someone who cares.</p>
-        <div class="bottom-cta-btns">
-            <button class="btn-white">Join an Event</button>
-            <button class="btn-outline">Share CleanTO</button>
-        </div>
-    </div>
-
-
-
-
-    <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 CleanTO. All rights reserved.</p>
+      © 2026 CleanTO. All rights reserved. &nbsp;|&nbsp; hello@cleanto.com
     </footer>
+  </div>
 
-    <!-- JAVASCRIPT -->
-    <script>
-    </script>
+  <div id="job-page">
+    <div class="job-back-bar">
+      <div class="container">
+        <button class="job-back-btn" onclick="goBack()">← Back to About</button>
+      </div>
+    </div>
+    <div class="job-header-block">
+      <div class="container">
+        <div class="job-badge">Volunteer Opportunity</div>
+        <h1 id="job-title"></h1>
+        <div class="job-meta" id="job-meta"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="job-body">
+        <div class="job-main" id="job-main"></div>
+        <div class="job-sidebar">
+          <div class="apply-card">
+            <h4>Ready to apply?</h4>
+            <p>Join hundreds of Torontonians making a real difference in their city.</p>
+            <button class="apply-card-btn" onclick="scrollToForm()">Apply now</button>
+            
+          </div>
+          <div class="org-card">
+            <div class="org-logo-box">🌿</div>
+            <h4>CleanTO</h4>
+            <p>Community-powered cleanup platform for Toronto. Founded 2025.</p>
+            <p style="color:#2c6e49; margin-top:8px; font-size:12.5px;">hello@cleanto.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
+  <div class="modal-overlay" id="success-modal">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeModal()">×</button>
+      <div class="modal-check">✓</div>
+      <h3>Application submitted!</h3>
+      <p>Thanks for applying to CleanTO. We'll review your application and get back to you within 5–7 business days.</p>
+      <button class="modal-done-btn" onclick="closeModal()">Done</button>
+    </div>
+  </div>
+
+  <script>
+    const jobs = {
+      eoi: {
+        title: 'Expression of Interest',
+        location: 'Toronto, ON',
+        commitment: 'Flexible',
+        type: 'Volunteer',
+        description: 'We\'re always on the lookout for passionate people who care about Toronto. Submit your expression of interest and we\'ll be in touch when a suitable opportunity opens up.',
+        responsibilities: ['Participate in scheduled cleanup events', 'Help spread the word', 'Provide feedback', 'Connect with members'],
+        requirements: ['Enthusiasm for Toronto', 'One event per month', 'Mobile device', 'No prior experience required'],
+        perks: ['Tote bag & kit', 'Points and badges', 'Community recognition', 'Exclusive events']
+      },
+      cleanup: {
+        title: 'Community Cleanup Leader',
+        location: 'Toronto, ON (Various neighbourhoods)',
+        commitment: '4–6 hrs/week',
+        type: 'Volunteer',
+        description: 'As a Cleanup Leader, you\'ll be the on-the-ground champion for CleanTO events in your neighbourhood.',
+        responsibilities: ['Plan and coordinate events', 'Communicate with volunteers', 'Ensure safety protocols', 'Log waste collected', 'Engage participants'],
+        requirements: ['Leadership skills', 'Comfort working outdoors', 'Reliable smartphone', 'First aid is asset', 'Coordination experience'],
+        perks: ['Official Leader kit', 'Leadership recognition', 'Monthly debriefs', 'Letters of reference']
+      },
+      ambassador: {
+        title: 'Community Ambassador',
+        location: 'Schools & Community Centres, Toronto',
+        commitment: '2–4 hrs/week',
+        type: 'Volunteer / Part-time',
+        description: 'CleanTO Ambassadors are the face of our movement, inspiring others to download the app and take action.',
+        responsibilities: ['Promote app mission', 'Encourage sign-ups', 'Organize small initiatives', 'Social media updates', 'Attend meetups'],
+        requirements: ['Outgoing personality', 'Social media active', 'Toronto student/member', 'Attend 2 events monthly'],
+        perks: ['Exclusive merch', 'Early feature access', 'Networking', 'Volunteer hours certificate']
+      },
+      dev: {
+        title: 'Front-End Developer',
+        location: 'Remote (Toronto preferred)',
+        commitment: '8–12 hrs/week',
+        type: 'Volunteer / Contract',
+        description: 'We\'re looking for a front-end developer to help build and improve the CleanTO web platform.',
+        responsibilities: ['Develop UI components', 'Implement layouts', 'Optimize performance', 'Code reviews', 'Triage bugs'],
+        requirements: ['HTML, CSS, JS proficiency', 'Framework experience', 'Responsive design knowledge', 'Git familiarity', 'Portfolio/GitHub required'],
+        perks: ['Flexible remote work', 'Portfolio project', 'Direct mentorship', 'Transition to paid role']
+      }
+    };
+
+    function showJob(jobId) {
+      const j = jobs[jobId];
+      document.getElementById('job-title').textContent = j.title;
+      document.getElementById('job-meta').innerHTML =
+        '<span>📍 ' + j.location + '</span>' +
+        '<span>⏱ ' + j.commitment + '</span>' +
+        '<span>🌿 CleanTO</span>';
+
+      document.getElementById('job-main').innerHTML =
+        '<h3>About the role</h3>' +
+        '<p>' + j.description + '</p>' +
+        '<h3>Responsibilities</h3>' +
+        '<ul>' + j.responsibilities.map(function(r){ return '<li>' + r + '</li>'; }).join('') + '</ul>' +
+        '<h3>What we\'re looking for</h3>' +
+        '<ul>' + j.requirements.map(function(r){ return '<li>' + r + '</li>'; }).join('') + '</ul>' +
+        '<h3>Perks &amp; benefits</h3>' +
+        '<ul>' + j.perks.map(function(p){ return '<li>' + p + '</li>'; }).join('') + '</ul>' +
+        '<div class="app-form-section" id="apply-form">' +
+          '<h4>Apply now</h4>' +
+          '<div class="form-row"><label>Full name</label><input id="name-input" type="text" placeholder="Jane Smith"></div>' +
+          '<div class="form-row"><label>Email address</label><input id="email-input" type="email" placeholder="jane@example.com"></div>' +
+          '<div class="form-row"><label>Phone (optional)</label><input type="tel" placeholder="+1 416 555 0100"></div>' +
+          '<div class="form-row"><label>Why do you want to join CleanTO?</label><textarea id="reason-input" placeholder="Tell us a bit about yourself..."></textarea></div>' +
+          '<button class="form-submit-btn" onclick="submitApp()">Submit application</button>' +
+        '</div>';
+
+      document.getElementById('about-page').style.display = 'none';
+      document.getElementById('job-page').classList.add('active');
+      window.scrollTo(0, 0);
+    }
+
+    function goBack() {
+      document.getElementById('job-page').classList.remove('active');
+      document.getElementById('about-page').style.display = '';
+      window.scrollTo(0, 0);
+    }
+
+    function scrollToForm() {
+      var form = document.getElementById('apply-form');
+      if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // UPDATED: submitApp with Validation
+    function submitApp() {
+      clearErrors();
+      const nameInput = document.getElementById('name-input');
+      const emailInput = document.getElementById('email-input');
+      const reasonInput = document.getElementById('reason-input');
+      let hasError = false;
+
+      if (!nameInput.value.trim()) {
+        showError(nameInput, "Full name is required");
+        hasError = true;
+      }
+
+      if (!emailInput.value.trim()) {
+        showError(emailInput, "Email address is required");
+        hasError = true;
+      } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value)) {
+        showError(emailInput, "Please enter a valid email address");
+        hasError = true;
+      }
+
+      if (!reasonInput.value.trim()) {
+        showError(reasonInput, "Please tell us why you want to join");
+        hasError = true;
+      }
+
+      if (!hasError) {
+        document.getElementById('success-modal').classList.add('active');
+      }
+    }
+
+    function showError(input, message) {
+      input.classList.add('error');
+      const errorDiv = document.createElement('span');
+      errorDiv.className = 'error-message';
+      errorDiv.textContent = message;
+      input.parentNode.appendChild(errorDiv);
+    }
+
+    function clearErrors() {
+      const messages = document.querySelectorAll('.error-message');
+      messages.forEach(m => m.remove());
+      const inputs = document.querySelectorAll('.error');
+      inputs.forEach(i => i.classList.remove('error'));
+    }
+
+    function closeModal() {
+      document.getElementById('success-modal').classList.remove('active');
+      goBack();
+    }
+  </script>
 </body>
 </html>
