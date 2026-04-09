@@ -33,9 +33,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
       let name = document.getElementById("name").value;
       let email = document.getElementById("email").value;
-      let password = document.getElementById("password").value;
 
-      if (name === "" || email === "" || password === "") {
+      if (name === "" || email === "") {
         message.innerText = "Please fill all fields!";
         message.className = "error";
       } else {
