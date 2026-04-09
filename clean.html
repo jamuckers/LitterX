@@ -627,6 +627,7 @@
                     // remove error styling if results found
                     joinMessage.classList.remove("error");
                 }
+            });
 
         function openOrganizeModal() {
             modalOverlay.classList.add("show");
@@ -700,6 +701,7 @@
 
                 setTimeout(() => {
                     closeOrganizeModal();
+                    joinMessage.classList.remove("error");
                     joinMessage.style.display = "block";
                     joinMessage.textContent = "Thanks! Your cleanup event proposal has been submitted successfully.";
                 }, 1200);
@@ -771,6 +773,7 @@
 
                 setTimeout(() => {
                     closeJoinModal();
+                    joinMessage.classList.remove("error");
                     joinMessage.style.display = "block";
                     joinMessage.textContent = "You have successfully joined the " + joinedEvent + "!";
                 }, 1200);
