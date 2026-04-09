@@ -24,6 +24,12 @@
             font-weight: bold;
         }
 
+        .join-msg.error {
+    background-color: #f8d7da;
+    color: #842029;
+    border: 1px solid #f5c2c7;
+        }
+
         .clean-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -608,13 +614,19 @@
                 }
             });
 
-            if (visibleCount === 0) {
-                joinMessage.style.display = "block";
-                joinMessage.textContent = "No cleanup events found in your area.";
-            } else {
-                joinMessage.style.display = "none";
-            }
-        });
+                if (visibleCount === 0) {
+                    joinMessage.style.display = "block";
+                    joinMessage.textContent = "No cleanup events found in your area.";
+
+                    // add error styling
+                    joinMessage.classList.add("error");
+
+                } else {
+                    joinMessage.style.display = "none";
+
+                    // remove error styling if results found
+                    joinMessage.classList.remove("error");
+                }
 
         function openOrganizeModal() {
             modalOverlay.classList.add("show");
